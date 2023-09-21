@@ -1,0 +1,86 @@
+As of 27 Apr 2023		Big Old List of *EVERY* Custom Amiga Chip and Chipset Name I Could Find 
+
+Custom Chips
+---------
+	*	AAA			- Advanced Amiga Architecture chipset
+	~	AAAGARY		- 'AAA' version of the Gary.   System Glue Chip, miscellaneous control circuitry
+	*	AGA			- Advanced Graphics Architecture chipset
+	+	Agnus		- Blitter, copper, DMA circuitry (Address Generator)
+	!	AMOS		- 'AAA' Advanced MOtherboad System controller.  is a suggested single chip implementation of the Acutiator Motherboard Control system.
+	*	Fat Angus	- Enhanced Angus	
+	$	Ariel		- Successor to the Angus/Alice/Paula for the AA+	
+	+*	Akiko		- Chunky->Planar conversion & serial (on CD32).  Designed by Beth Richard
+	+	Alice		- 'AA Agnus'
+	+*	Amber		- Flicker Fixer gate array
+	*~	Andrea		- 'AAA' Replaces Agnus chip. Does address generation for the chip DMA channels, controls DRAM accesses, and provides the blitter and coprocessor functionality.
+	/	Beauty    	- Used in CDTV II.  never released.  
+	$	Belle		- 'AAA' Successor to the Denise/Lisa for the AA+		
+	+	Bridgette	- Integrated bus buffer in the A4000 series  
+	$	Bt101KPJ/121KPJ	- Digital / analog audio converters used w/some clones (Walker card (Bt101KPJ), Access, InsideOut, BoXeR and A5000 / A6000)	    
+	+*%	Budgie		-'Memory Stuff'.  Connects the trapdoor expansion port for Zorro II-like expansions and controls additional  Fast RAM. 
+	+*	Buster		- Expansion buss controller 
+	*	Fat/Super Buster - 3000 and 4000 lines use Super Buster for bus control and arbitration of both Zorro II/III subsystems
+	+	CIA			- Responsible for, or take part in various I/O functions such as the serial, parallel, joystick & mouse ports
+	+	Daphne		- Either a very early name for Denise, or an early version of what eventually became Denise  
+	$	Debi		- Successor to the Video DAC for the AA+	
+	+	Denise/Super	- Color palette, sprites, video output: Display Adapter (Daphne)
+	+	DMAC/Super	- Disk IO controller 
+	*	ECS			- Enhanced Chipset
+	!	EPIC		- 'AAA' proposed implementation of the Acutiator Expansion Controller is the Expansion Pipeline Interface  Controller.  
+	+*#	Gary		- System Glue Chip, miscellaneous control circuitry
+	*	Fat Gary	- Upgrade for the 32-bit A3000/T and A4000/T. 
+	+*	Gayle		- 'Lots of control stuff'
+	/	Grace		- Used in CDTV II.  never released. 
+	@	Hombre		- a complete system in two chips.  First  chip  was  the  CPU  chip  and  contained a RISC integer core, a blitter,  a  3D colour rendering engine, audio, a CD interface, a peripheral interface,  a bus interface and controllers for display and system memories.  The second chip was the video data path and contained line buffers, a colour lookup  table, etc. 
+	&$	Kelly   	- Would have been the A3000+'s/AA3000's RAMDAC (digital video memory to analog RGB converter chip)
+	+	Kickstart	- Responsible for holding the core of the Amiga operating system, (loosely consider as the kernel)	
+	*~	Linda		- AAA Chip - Provides a line data buffer not found in the old chip set.  Buffers display data on a line by line basis to allow higher effective display bandwidth for higher resolution displays and at the same time permitting a degree of compatibility with old software.
+	+	Lisa		- 'AA Denise'  
+	*~	Mary		- 'AAA Paula' Replaces the old PAULA chip. Responsible for floppy disk control, audio, uart, interrupt generation, pot, and mouse control.
+	*~	Monica		- 'AAA Denise' Graphics Chip (see HCS)  Replaces the old DENISE chip. This chip processes all display data including Sprite information. 
+	$	Nathalie	- One of two chips that made up the Hombre chipset	
+	$	Nathaniel	- One of two chips that made up the Hombre chipset	
+	*	OCS		- Original Chipset
+	+	Paula		- Audio, floppy, joystick & interrupt circuitry: Ports and Audio (Portia)
+	+	Portia		- Either a very early name for Paula, or a very early version of what eventually became Paula	
+	!	RACE		- 'AAA' Ram, AMI, and CPU/Expansion controller.  Is a suggested single chip implementation of the CPU/RAM control device.
+	+*	Ramsey		- Ram controller with DMA
+	%	Ranger		- A prototype computer that was supposed to be the second generation Amiga chipset prior to ECS.
+	!	SAIL		- 'AAA'  Synchronous Amiga Interface with Latch device.  Is a single Chip implementation of the Amiga Chip Controller for use with the AAA Chip bus subsystem defined by the Andrea Chip.
+	*	Super DMAC 	- SDMAC (A3000/T) provides DMA and bus interface for integrated WD33C93A SCSI controller. (used w/Ramsey)
+	$	Super I/O	- Component of the Walker. managed E-IDE, EPP (Enhanced Parallel Port), serial port, MIDI and high-density PC floppy drive.	
+	+	Toni		- Used in Walker. system bus controller, including DRAM & possibly controlling the FIDO serial ports and other I/O. 	
+	$	Video DAC	- Transform digital signals from the Amiga into analog signals for the monitor (triple 8 bit)	
+	*	Vidiot		- A hybrid integrated circuit that works as digital-to-analog converter (DAC) for the OCS/ECS 
+
+	^	6500		- CDTV keyboard controller	
+	^	6525		- CDTV CD-ROM controller 
+	^	6554		- CDTV front panel controller 
+	$	7883/78835	- Filter and converter audio digital/analog 18 bits. They are present on the CD32 (LC78835M) and the CDTV (LC7883M).	
+	*	8727 DMA 	- Used w/A2090(A) ST-506/SCSI controller. provides DMA mgmt. for Konan DJC-002 (ST-506) and WD33C93 SCSI controllers 	
+	*	390562		- 'Hedley Controller' 390562-01 was used in the A2024 high resolution monitor and controlled the frame buffer	
+		
+
+* = https://wikipedia.com
++ = https://bigbookofamigahardware.com/
+/ = http://www.l8r.net/technical/t-achips.shtml
+^ = http://amiga.resource.cx/mod/cdtv.html
+& = https://retrocomputing.stackexchange.com/questions/1536/what-is-the-kelly-chip
+$ = http://obligement.free.fr/articles/chipsetamiga.php#kelly
+# = https://web.archive.org/web/20040626094812/http://www.vgr.com/tbocl/MAIN.html
+% = https://www.amigawiki.de/doku.php?id=en:models:ranger_chipset
+@ = http://www.bambi-amiga.co.uk/amigahistory/21helper.txt
+! = https://haynie.amigaworld.de/research/acutiatr/docs/acu1.pdf   (**Note PDF***)
+~ = https://archive.org/details/advanced-amiga-architecture
+
+
+Chipsets
+---------
+	- OCS	  - Original Chip Set			- used in the earliest Commodore Amiga computers and defined the Amiga's graphics and sound capabilities. 
+	- RCS	  - Ranger Chipset 			- unreleased prototype. intended to be the second-generation Amiga chipset, prior to ECS
+	- ECS	  - Enhanced Chipset			- minor improvements over the original chipset (OCS)  
+	- AGA	  - Advanced Graphics Architecture	- third-generation Amiga graphic chipset.  A1200/4000 
+	- AAA 	  - Amiga Advanced Architecture	 	- intended for the next-generation Amiga multimedia systems. replaced by Hombre (prototype: Nyx)
+	- AA+	  - Advanced Architecture+		- Last classic compatible chipset. They planned to release it in 1994 for low end Amiga computers along with AAA.
+	- AA+ Access  - Advanced Architecture+ Access	- adopted by Mick Tinker (Access) next gen AGA but was never completed
+	- HCS	- Hombre Chipset			- intended as the basis of its next generation game machine called CD64 and a 3D accelerator PCI card.
