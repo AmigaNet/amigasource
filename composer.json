@@ -1,0 +1,19 @@
+{
+    "name": "benovermyer/amigasource",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.5",
+        "twig/twig": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "AmigaSource\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ben Overmyer",
+            "email": "ben@overmyer.net"
+        }
+    ]
+}

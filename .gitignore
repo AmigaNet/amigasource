@@ -1,2 +1,5 @@
 localhost.sql
+data.sql
 .env
+/vendor/
+template_cache

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Links
+{% endblock %}
+
+{% block content %}
+
+<h2>Links</h2>
+
+{% for link in links %}
+<p>{% if links.links_dead == 0 %}<a href="{{ link.links_url }}">{{ link.links_name }}</a>{% else %}<b>{{ link.links_name }} (dead)</b>{% endif %} - {{ link.links_desc }}</p>
+{% endfor %}
+
+{% endblock %}

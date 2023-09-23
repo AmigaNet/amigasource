@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+
+<head>
+	<title>{% block title %}{% endblock %} | {{ siteTitle }}</title>
+	<link rel="icon" type="image/x-icon" href="/web_images/static/favicon.ico">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="robots" content="noindex,nofollow">
+	<style type="text/css"> body { background-image: url('/web_images/static/lg_boing.jpg'); }</style>
+</head>
+
+<body>
+
+<center>
+    <a href="/index.php"><img src="/web_images/static/lg-asbnr.jpg" alt="Amiga Source" height="120" width="380"></a>		
+</center>
+
+<table border="1" cellpadding="10">
+	<tr>
+		<td valign="top">
+		{% include 'sidebar.html.twig' %}
+		</td>
+		<td valign="top">
+		{% block content %}{% endblock %}
+		</td>
+	</tr>
+</table>
+
+<center>
+    <p>You can contact me at <a href="mailto:webmaster@amigasource.com">webmaster@amigasource.com</a></p>
+	<p>Logo copyright 2001.</p>
+    <p>Amiga is a registered trademark. Site copyright &copy;2023, Scott A. Pistorino</p>
+</center>
+
+</body>
+
+</html>

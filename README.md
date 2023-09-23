@@ -11,3 +11,5 @@ docker exec -i amigasource-db-1 sh -c 'exec mysql -uroot -p"root" asdb' < ./data
 ```
 
 You only have to do this once. From then on you can just run `docker compose up -d` to start the environment and `docker compose down` to shut it down.
+
+After that, copy `.env-example` to `.env`.

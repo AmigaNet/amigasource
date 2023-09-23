@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<h2>News</h2>
+
+<table>
+{% for article in news %}
+<tr><td bgcolor="#ff1100">
+    <h3><font color="#ffffff">{{ article['news_date'] }}</font></h3>
+</td></tr>
+<tr><td>
+    <p>{{ article['news_story'] | raw }}</p>
+</td></tr>
+{% endfor %}
+</table>
+
+{% endblock %}

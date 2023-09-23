@@ -1,0 +1,102 @@
+<table>
+    <tr>
+        <td bgcolor="#ff1100">
+            <font color="#ffffff">Search</font>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <form action="/search.php" method="get">
+                <input type="text" name="q" value="" /><br/>
+                <input type="submit" value="Search" />
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ff1100">
+            <font color="#ffffff">Upcoming Events</font>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            TODO
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ff1100">
+            <font color="#ffffff">Categories</font>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {% for category in categories %}
+            <b>{{ category.title }}</b>
+            <ul>
+                {% for subcategory in category.sub %}
+                <li><a href="/links.php?category={{ subcategory.cat_sub_id }}">{{ subcategory.cat_sub_title }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ff1100">
+            <font color="#ffffff">Magazines</font>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            TODO
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ff1100">
+            <font color="#ffffff">File Repositories</font>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            TODO
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ff1100">
+            <font color="#ffffff">Top 10+10</font>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            TODO
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ff1100">
+            <font color="#ffffff">Big Shops &amp; Vendors</font>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            TODO
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ff1100">
+            <font color="#ffffff">Service and Repair</font>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            TODO
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ff1100">
+            <font color="#ffffff">A1222/Tabor Links</font>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            TODO
+        </td>
+    </tr>
+</table>
