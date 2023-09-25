@@ -25,3 +25,14 @@ include 'login_db.php';
 $commonData = [
     'siteTitle' => $_ENV['SITE_TITLE'],
 ];
+
+$userData = [
+    'loggedIn' => false,
+];
+
+if (isset($_SESSION['username'])) {
+    $userData['username'] = $_SESSION['username'];
+    $userData['loggedIn'] = true;
+}
+
+$commonData = array_merge($commonData, $userData);
