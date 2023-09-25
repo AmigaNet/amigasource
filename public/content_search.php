@@ -1,1 +1,0 @@
-<?php	$_SESSION["content_type"]='search';		include("content_search_proc.php");?>

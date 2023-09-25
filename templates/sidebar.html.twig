@@ -19,7 +19,24 @@
     </tr>
     <tr>
         <td>
-            TODO
+            {% if upcomingEvents is empty %}
+            No upcoming events.
+            {% else %}
+            <ul>
+                {% for event in upcomingEvents %}
+                <li>
+                    <b>{{ event.cal_name }}</b><br/>
+                    {% if event.cal_date_start == event.cal_date_end %}
+                    {{ event.cal_date_start|date("M j, Y") }}<br/>
+                    {% else %}
+                    {{ event.cal_date_start|date("M j, Y") }} - {{ event.cal_date_end|date("M j, Y") }}<br/>
+                    {% endif %}
+                    {{ event.cal_location }}<br/>
+                    <a href="{{ event.cal_url }}">{{ event.cal_url }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
         </td>
     </tr>
     <tr>
@@ -46,27 +63,18 @@
     </tr>
     <tr>
         <td>
-            TODO
-        </td>
-    </tr>
-    <tr>
-        <td bgcolor="#ff1100">
-            <font color="#ffffff">File Repositories</font>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            TODO
-        </td>
-    </tr>
-    <tr>
-        <td bgcolor="#ff1100">
-            <font color="#ffffff">Top 10+10</font>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            TODO
+            <b>Online</b><br/>
+            <ul>
+                {% for magazine in onlineMagazines %}
+                    <li><a href="{{ magazine.online_url }}">{{ magazine.online_name }}</a></li>
+                {% endfor %}
+            </ul>
+            <b>Print</b><br/>
+            <ul>
+                {% for magazine in printMagazines %}
+                    <li><a href="{{ magazine.print_url }}">{{ magazine.print_name }}</a></li>
+                {% endfor %}
+            </ul>
         </td>
     </tr>
     <tr>
@@ -76,7 +84,11 @@
     </tr>
     <tr>
         <td>
-            TODO
+            <ul>
+            {% for vendor in vendors %}
+                <li><a href="{{ vendor.vendor_url }}">{{ vendor.vendor_name }}</a></li>
+            {% endfor %}
+            </ul>
         </td>
     </tr>
     <tr>
@@ -86,17 +98,11 @@
     </tr>
     <tr>
         <td>
-            TODO
-        </td>
-    </tr>
-    <tr>
-        <td bgcolor="#ff1100">
-            <font color="#ffffff">A1222/Tabor Links</font>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            TODO
+            <ul>
+            {% for shop in repairShops %}
+                <li><a href="{{ shop.repair_url }}">{{ shop.repair_name }}</a></li>
+            {% endfor %}
+            </ul>
         </td>
     </tr>
 </table>

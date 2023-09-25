@@ -8,4 +8,11 @@ $articles = $newsEngine->fetchActive(5);
 
 include_once 'sidebar_data.php';
 
-echo $twig->render('index.html.twig', ['categories' => $categoryData, 'news' => $articles, 'siteTitle' => $_ENV['SITE_TITLE']]);
+$data = [
+    'news' => $articles,
+];
+
+$data = array_merge($data, $commonData);
+$data = array_merge($data, $sidebarData);
+
+echo $twig->render('index.html.twig', $data);

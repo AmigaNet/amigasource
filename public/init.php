@@ -21,3 +21,7 @@ if (!isset($_SESSION)) {
 }
 
 include 'login_db.php';
+
+$commonData = [
+    'siteTitle' => $_ENV['SITE_TITLE'],
+];

@@ -2,8 +2,6 @@
 
 require_once 'init.php';
 
-include_once 'sidebar_data.php';
-
 $linkEngine = new \AmigaSource\Data\LinkEngine($db);
 
 $links = [];
@@ -15,4 +13,13 @@ if (isset($_GET['category'])) {
     $links = $linkEngine->fetchAll();
 }
 
-echo $twig->render('links.html.twig', ['categories' => $categoryData, 'links' => $links, 'siteTitle' => $_ENV['SITE_TITLE']]);
+include_once 'sidebar_data.php';
+
+$data = [
+    'links' => $links,
+];
+
+$data = array_merge($data, $commonData);
+$data = array_merge($data, $sidebarData);
+
+echo $twig->render('links.html.twig', $data);
