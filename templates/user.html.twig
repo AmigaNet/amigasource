@@ -1,5 +1,5 @@
-{% if loggedIn %}
-    Logged in as {{ username }} | <a href="/logout.php">Logout</a>
+{% if logged_in %}
+    Logged in as <b>{{ username }}</b> | {% if user_role == 'admin' %}<a href="/admin.php">Admin Dashboard</a> | {% endif %}<a href="/logout.php">Logout</a>
 {% else %}
     <a href="/login.php">Login</a> | <a href="/register.php">Register</a>
 {% endif %}

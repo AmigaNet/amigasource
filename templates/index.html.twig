@@ -8,14 +8,26 @@ Home
 
 <h2>News</h2>
 
-<table>
+<table width="100%">
 {% for article in news %}
-<tr><td bgcolor="#ff1100">
-    <h3><font color="#ffffff">{{ article['news_date'] }}</font></h3>
-</td></tr>
-<tr><td>
-    <p>{{ article['news_story'] | raw }}</p>
-</td></tr>
+    <tr>
+        <td bgcolor="#637B94" cellpadding="1" cellspacing="0">
+            <table cellpadding="1" width="100%" bgcolor="#ffffff">
+                <tr>
+                    <td bgcolor="#ff1100">
+                        <font color="#ffffff" size="3"><b>{{ article['news_date']|date("M j, Y") }}</b></font>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p>{{ article['news_story'] | raw }}</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+    <tr><td>&nbsp;</td></tr>
 {% endfor %}
 </table>
 

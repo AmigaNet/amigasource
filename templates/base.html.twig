@@ -16,16 +16,32 @@
     <a href="/index.php"><img src="/web_images/static/lg-asbnr.jpg" alt="Amiga Source" height="120" width="380"></a>		
 </center>
 
-<table border="1" cellpadding="10">
+<table cellpadding="10" width="80%" align="center">
 	<tr>
-		<td colspan="2" align="right">
-		{% include 'user.html.twig' %}
+		<td colspan="2" align="center">
+			<font size="4"><b>Since 2001... Your BEST source for Amiga information... Again</b></font>
 		</td>
+	</tr>
 	<tr>
-		<td valign="top">
+		<td colspan="2" bgcolor="#dddddd">
+			<table width="100%">
+				<tr>
+					<td>
+						<a href="/index.php">Home</a> |
+						<a href="/links.php">Links</a>
+					</td>
+					<td align="right">
+					{% include 'user.html.twig' %}
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor="#dddddd" valign="top" width="250">
 		{% include 'sidebar.html.twig' %}
 		</td>
-		<td valign="top">
+		<td valign="top" bgcolor="#ffffff">
 		{% block content %}{% endblock %}
 		</td>
 	</tr>

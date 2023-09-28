@@ -31,8 +31,14 @@ $userData = [
 ];
 
 if (isset($_SESSION['username'])) {
-    $userData['username'] = $_SESSION['username'];
-    $userData['loggedIn'] = true;
+    $userEngine = new \AmigaSource\Auth\UserEngine($db);
+    try {
+        $user = $userEngine->fetchByUsername($_SESSION['username']);
+        $commonData['username'] = $user['username'];
+        $commonData['user_role'] = $user['role'];
+        $commonData['logged_in'] = true;
+    } catch (\Exception $e) {
+        unset($_SESSION['username']);
+        $commonData['logged_in'] = false;
+    }
 }
-
-$commonData = array_merge($commonData, $userData);

@@ -1,24 +1,25 @@
-<table>
+<table width="100%">
     <tr>
-        <td bgcolor="#ff1100">
-            <font color="#ffffff">Search</font>
+        <td bgcolor="#c70000">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Search</b></font>
         </td>
     </tr>
     <tr>
-        <td>
+        <td bgcolor="#ffffff">
             <form action="/search.php" method="get">
                 <input type="text" name="q" value="" /><br/>
                 <input type="submit" value="Search" />
             </form>
         </td>
     </tr>
+    <tr><td>&nbsp;</td></tr>
     <tr>
-        <td bgcolor="#ff1100">
-            <font color="#ffffff">Upcoming Events</font>
+        <td bgcolor="#f1c40f">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Event Calendar</b></font>
         </td>
     </tr>
     <tr>
-        <td>
+        <td bgcolor="#ffffff">
             {% if upcomingEvents is empty %}
             No upcoming events.
             {% else %}
@@ -39,13 +40,14 @@
             {% endif %}
         </td>
     </tr>
+    <tr><td>&nbsp;</td></tr>
     <tr>
-        <td bgcolor="#ff1100">
-            <font color="#ffffff">Categories</font>
+        <td bgcolor="#006CD9">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Categories</b></font>
         </td>
     </tr>
     <tr>
-        <td>
+        <td bgcolor="#ffffff">
             {% for category in categories %}
             <b>{{ category.title }}</b>
             <ul>
@@ -56,13 +58,14 @@
             {% endfor %}
         </td>
     </tr>
+    <tr><td>&nbsp;</td></tr>
     <tr>
-        <td bgcolor="#ff1100">
-            <font color="#ffffff">Magazines</font>
+        <td bgcolor="#D61BAF">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Magazines</b></font>
         </td>
     </tr>
     <tr>
-        <td>
+        <td bgcolor="#ffffff">
             <b>Online</b><br/>
             <ul>
                 {% for magazine in onlineMagazines %}
@@ -77,13 +80,14 @@
             </ul>
         </td>
     </tr>
+    <tr><td>&nbsp;</td></tr>
     <tr>
-        <td bgcolor="#ff1100">
-            <font color="#ffffff">Big Shops &amp; Vendors</font>
+        <td bgcolor="#dc7633">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Big Shops &amp; Vendors</b></font>
         </td>
     </tr>
     <tr>
-        <td>
+        <td bgcolor="#ffffff">
             <ul>
             {% for vendor in vendors %}
                 <li><a href="{{ vendor.vendor_url }}">{{ vendor.vendor_name }}</a></li>
@@ -91,13 +95,14 @@
             </ul>
         </td>
     </tr>
+    <tr><td>&nbsp;</td></tr>
     <tr>
-        <td bgcolor="#ff1100">
-            <font color="#ffffff">Service and Repair</font>
+        <td bgcolor="#294C2E">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Service and Repair</b></font>
         </td>
     </tr>
     <tr>
-        <td>
+        <td bgcolor="#ffffff">
             <ul>
             {% for shop in repairShops %}
                 <li><a href="{{ shop.repair_url }}">{{ shop.repair_name }}</a></li>
