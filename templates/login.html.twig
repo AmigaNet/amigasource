@@ -8,6 +8,10 @@ Login
 
 <h2>Login</h2>
 
+{% if error %}
+    <p><font color="red">{{ error }}</font></p>
+{% endif %}
+
 <form method="POST" action="submit_login.php">
     <label for="username">Username</label>
     <input type="text" name="username" id="username" required>

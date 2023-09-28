@@ -27,6 +27,11 @@ class UserEngine
         $sql = "SELECT * FROM users WHERE username = '$username'";
         $result = $this->db->query($sql);
         $user = $result->fetch_assoc();
+
+        if ($user == null) {
+            throw new UserNotFoundException("User $username not found");
+        }
+
         return $user;
     }
 
@@ -43,12 +48,12 @@ class UserEngine
     public function login($username, $password)
     {
         $user = $this->fetchByUsername($username);
-        if ($user) {
-            if (password_verify($password, $user['password'])) {
-                return $user;
-            }
+
+        if (password_verify($password, $user['password'])) {
+            return $user;
         }
-        return false;
+
+        throw new PasswordException();
     }
 
     public function register($username, $password)
@@ -62,5 +67,16 @@ class UserEngine
 
         $user = $this->fetchByUsername($username);
         return $user;
+    }
+
+    public function setRole($username, $role)
+    {
+        $sql = "UPDATE users SET role = ? WHERE username = ?";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param('ss', $role, $username);
+        $stmt->execute();
+
+        return true;
     }
 }
