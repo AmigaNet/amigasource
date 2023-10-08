@@ -8,8 +8,26 @@ Links
 
 <h2>Links</h2>
 
+<table border="1" width="100%">
 {% for link in links %}
-<p>{% if links.is_dead == 0 %}<a href="{{ link.url }}">{{ link.name }}</a>{% else %}<b>{{ link.name }} (dead)</b>{% endif %} - {{ link.description }}{% if user_role == 'admin' %} (<a href="/link_edit.php?id={{ link.id }}">Edit</a>, <a href="/link_confirm_delete.php?id={{ link.id }}">Delete</a>){% endif %}</p>
+<tr>
+    <td valign="top"{% if user_role == 'admin' %} rowspan="2"{% endif %}><a href="{{ link.url }}">{{ link.name }}</a>{% if link.is_dead == 1 %}<b><font color="red"> (dead)</font></b>{% endif %}</td>
+    <td>{{ link.description }}</td>
+</tr>
+{% if user_role == 'admin' %}
+<tr>
+    <td align="right">
+        <b>Is Active:</b> {{ link.is_active }}<br/>
+        <b>Is Dead:</b> {{ link.is_dead }}<br/>
+        <b>Is Recommended:</b> {{ link.is_recommended }}<br/>
+        <b>Created:</b> {{ link.date_added|date('Y-m-d') }}<br/>
+        <b>Updated:</b> {{ link.date_updated|date('Y-m-d') }}<br/>
+        <b>Verified:</b> {{ link.date_verified|date('Y-m-d') }}<br/>
+        <a href="/link_edit.php?id={{ link.id }}">Edit</a> || <a href="/link_test_live.php?id={{ link.id }}">Test if Broken</a> || <a href="/link_confirm_delete.php?id={{ link.id }}">Delete</a>
+    </td>
+</tr>
+{% endif %}
 {% endfor %}
+</table>
 
 {% endblock %}
