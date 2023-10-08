@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Confirm Delete Link
+{% endblock %}
+
+{% block content %}
+
+<h2>Confirm Delete Link</h2>
+
+<p>You are about to delete the link "{{ link.name }}".</p>
+
+<form action="/link_delete.php" method="post">
+    <input type="hidden" name="id" value="{{ link.id }}">
+    <p>Are you sure?</p>
+    <input type="submit" value="Delete Forever">
+</form>
+
+{% endblock %}

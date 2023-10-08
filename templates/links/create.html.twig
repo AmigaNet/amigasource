@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Add Link
+{% endblock %}
+
+{% block content %}
+
+<h2>Add Link</h2>
+
+<p>You are adding a link.</p>
+
+<form action="/link_save_new.php" method="post">
+    <table>
+    <tr>
+        <td>Name</td>
+        <td><input type="text" name="name" size="80"></td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td><input type="text" name="url" size="80"></td>
+    </tr>
+    <tr>
+        <td>Author</td>
+        <td><input type="text" name="author"></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td><input type="text" name="email"></td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td><textarea name="description" cols="80" rows="10"></textarea></td>
+    </tr>
+    <tr>
+        <td>Categories</td>
+        <td>
+            <select name="categories[]" multiple>
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.title }}</option>
+                {% endfor %}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Is Active</td>
+        <td><input type="checkbox" name="is_active" checked></td>
+    </tr>
+    <tr>
+        <td>Is Dead</td>
+        <td><input type="checkbox" name="is_dead"></td>
+    </tr>
+    <tr>
+        <td>Is Recommended</td>
+        <td><input type="checkbox" name="is_recommended"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit" value="Save"></td>
+    </tr>
+    </table>
+</form>
+
+{% endblock %}

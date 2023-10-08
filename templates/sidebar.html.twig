@@ -49,10 +49,10 @@
     <tr>
         <td bgcolor="#ffffff">
             {% for category in categories %}
-            <b>{{ category.title }}</b>
+            <b><a href="/links.php?category={{ category.id }}">{{ category.title }}</a></b>
             <ul>
                 {% for subcategory in category.sub %}
-                <li><a href="/links.php?category={{ subcategory.cat_sub_id }}">{{ subcategory.cat_sub_title }}</a></li>
+                <li><a href="/links.php?category={{ subcategory.id }}">{{ subcategory.name }}</a></li>
                 {% endfor %}
             </ul>
             {% endfor %}

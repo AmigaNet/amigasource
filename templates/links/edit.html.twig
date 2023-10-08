@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Edit Link
+{% endblock %}
+
+{% block content %}
+
+<h2>Edit Link</h2>
+
+<p>You are editing a link.</p>
+
+<form action="/link_update.php" method="post">
+    <input type="hidden" name="id" value="{{ link.id }}">
+    <table>
+    <tr>
+        <td>Name</td>
+        <td><input type="text" name="name" value="{{ link.name }}" size="80"></td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td><input type="text" name="url" value="{{ link.url }}" size="80"></td>
+    </tr>
+    <tr>
+        <td>Author</td>
+        <td><input type="text" name="author" value="{{ link.author }}"></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td><input type="text" name="email" value="{{ link.email }}"></td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td><textarea name="description" cols="80" rows="10">{{ link.description }}</textarea></td>
+    </tr>
+    <tr>
+        <td>Categories</td>
+        <td>
+            <select name="categories[]" multiple>
+                {% for category in categories %}
+                <option value="{{ category.id }}"
+                    {% if category.id in link_categories %}
+                    selected
+                    {% endif %}
+                >{{ category.title }}</option>
+                {% endfor %}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Is Active</td>
+        <td><input type="checkbox" name="is_active" value="1"
+            {% if link.is_active %}
+            checked
+            {% endif %}
+        ></td>
+    </tr>
+    <tr>
+        <td>Is Dead</td>
+        <td><input type="checkbox" name="is_dead" value="1"
+            {% if link.is_dead %}
+            checked
+            {% endif %}
+        ></td>
+    </tr>
+    <tr>
+        <td>Is Recommended</td>
+        <td><input type="checkbox" name="is_recommended" value="1"
+            {% if link.is_recommended %}
+            checked
+            {% endif %}
+        ></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit" value="Save"></td>
+    </tr>
+    </table>
+</form>
+
+{% endblock %}

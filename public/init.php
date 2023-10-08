@@ -1,6 +1,10 @@
 <?php
 
+use Twig\Extra\Intl\IntlExtension;
+
 require __DIR__ . '/../vendor/autoload.php';
+
+require_once __DIR__ . '/global_functions.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
@@ -13,6 +17,7 @@ if ($_ENV['ENVIRONMENT'] === 'production') {
 }
 
 $twig = new \Twig\Environment($loader, $twigOptions);
+$twig->addExtension(new IntlExtension());
 
 define("ABS_PATH", dirname(__FILE__));
 

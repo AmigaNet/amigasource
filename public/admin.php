@@ -25,7 +25,14 @@ if (isset($username)) {
     exit;
 }
 
-$data = [];
+$sql = "SELECT COUNT(*) AS count FROM links";
+$result = $db->query($sql);
+$row = $result->fetch_assoc();
+$linkCount = $row['count'];
+
+$data = [
+    'link_count' => $linkCount,
+];
 
 $data = array_merge($data, $commonData);
 $data = array_merge($data, $sidebarData);

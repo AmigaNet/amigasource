@@ -9,7 +9,7 @@ Links
 <h2>Links</h2>
 
 {% for link in links %}
-<p>{% if links.links_dead == 0 %}<a href="{{ link.links_url }}">{{ link.links_name }}</a>{% else %}<b>{{ link.links_name }} (dead)</b>{% endif %} - {{ link.links_desc }}</p>
+<p>{% if links.is_dead == 0 %}<a href="{{ link.url }}">{{ link.name }}</a>{% else %}<b>{{ link.name }} (dead)</b>{% endif %} - {{ link.description }}{% if user_role == 'admin' %} (<a href="/link_edit.php?id={{ link.id }}">Edit</a>, <a href="/link_confirm_delete.php?id={{ link.id }}">Delete</a>){% endif %}</p>
 {% endfor %}
 
 {% endblock %}
