@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Confirm Delete News Article
+{% endblock %}
+
+{% block content %}
+
+<h2>Confirm Delete News Article</h2>
+
+<p>You are about to delete the article with id {{ article.id }}.</p>
+
+<form action="/news/delete.php" method="post">
+    <input type="hidden" name="id" value="{{ article.id }}">
+    <p>Are you sure?</p>
+    <input type="submit" value="Delete Forever">
+</form>
+
+{% endblock %}

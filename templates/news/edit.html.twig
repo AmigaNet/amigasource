@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block css %}{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var story = $('#story').val();
+    $('#preview').html(story);
+
+    $('#story').keyup(function() {
+        var story = $('#story').val();
+        $('#preview').html(story);
+    });
+});
+</script>
+{% endblock %}
+
+{% block title %}
+Edit News Article
+{% endblock %}
+
+{% block content %}
+
+<h2>Edit News Article</h2>
+
+<p>You are editing an article.</p>
+
+<form action="/news/update.php" method="post">
+    <input type="hidden" name="id" value="{{ article.id }}">
+    <table>
+    <tr>
+        <td>Title</td>
+        <td><input type="text" name="title" size="80" value="{{ article.title }}"></td>
+    </tr>
+    <tr>
+        <td>Story</td>
+        <td>
+            <textarea id="story" name="story" rows="20" cols="80">{{ article.story }}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>Is Active</td>
+        <td><input type="checkbox" name="is_active" value="1"
+            {% if article.is_active %}
+            checked
+            {% endif %}
+        ></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit" value="Save"></td>
+    </tr>
+    </table>
+</form>
+
+<h2>Preview</h2>
+
+<table border="1" width="100%">
+<tr>
+    <td><div id="preview"></div></td>
+</tr>
+</table>
+
+{% endblock %}

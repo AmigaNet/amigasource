@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Upload File
+{% endblock %}
+
+{% block content %}
+
+<h2>Upload a File</h2>
+
+<p>The file can be up to 500kb in size.</p>
+<form enctype="multipart/form-data" action="/admin/file_upload.php" method="POST">
+    <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
+    <table width="100%">
+        <tr>
+            <td><b>File to Upload:</b> <input name="userfile" type="file" /></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Upload" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}

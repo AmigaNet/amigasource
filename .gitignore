@@ -4,3 +4,4 @@ data.sql
 /vendor/
 template_cache
 logs/*.log
+uploads

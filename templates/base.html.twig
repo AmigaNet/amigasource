@@ -1,5 +1,4 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html lang="en">
 
 <head>
@@ -7,7 +6,9 @@
 	<link rel="icon" type="image/x-icon" href="/web_images/static/favicon.ico">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="robots" content="noindex,nofollow">
+	{% block meta %}{% endblock %}
 	<style type="text/css"> body { background-image: url('/web_images/static/lg_boing.jpg'); }</style>
+	{% block css %}{% endblock %}
 </head>
 
 <body>
@@ -52,7 +53,7 @@
 	<p>Logo copyright 2001.</p>
     <p>Amiga is a registered trademark. Site copyright &copy;2023, Scott A. Pistorino</p>
 </center>
-
+{% block js %}{% endblock %}
 </body>
 
 </html>

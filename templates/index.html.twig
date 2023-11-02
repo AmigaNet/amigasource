@@ -15,12 +15,12 @@ Home
             <table cellpadding="1" width="100%" bgcolor="#ffffff">
                 <tr>
                     <td bgcolor="#ff1100">
-                        <font color="#ffffff" size="3"><b>{{ article['news_date']|date("M j, Y") }}</b></font>
+                        <font color="#ffffff" size="3"><b>{{ article['date_added']|date("M j, Y") }}</b></font>
                     </td>
                 </tr>
                 <tr>
                     <td bgcolor="#ffffff">
-                        <p>{{ article['news_story'] | raw }}</p>
+                        <p>{{ article['story'] | raw }}</p>
                     </td>
                 </tr>
             </table>
