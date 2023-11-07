@@ -1,6 +1,6 @@
 <?php
 
-require_once 'init.php';
+require_once '../init.php';
 
 $linkEngine = new \AmigaSource\Data\LinkEngine($db);
 

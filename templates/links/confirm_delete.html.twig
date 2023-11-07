@@ -10,7 +10,7 @@ Confirm Delete Link
 
 <p>You are about to delete the link "{{ link.name }}".</p>
 
-<form action="/link_delete.php" method="post">
+<form action="/links/delete.php" method="post">
     <input type="hidden" name="id" value="{{ link.id }}">
     <p>Are you sure?</p>
     <input type="submit" value="Delete Forever">

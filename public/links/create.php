@@ -1,6 +1,6 @@
 <?php
 
-require_once 'init.php';
+require_once '../init.php';
 
 $linkEngine = new \AmigaSource\Data\LinkEngine($db);
 
@@ -9,7 +9,7 @@ if (!is_admin()) {
     exit;
 }
 
-include_once 'sidebar_data.php';
+include_once '../sidebar_data.php';
 
 $data = [];
 

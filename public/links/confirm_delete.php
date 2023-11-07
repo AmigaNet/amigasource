@@ -1,6 +1,6 @@
 <?php
 
-require_once 'init.php';
+require_once '../init.php';
 
 $linkEngine = new \AmigaSource\Data\LinkEngine($db);
 
@@ -11,17 +11,19 @@ if (!is_admin()) {
 
 if (isset($_GET['id'])) {
     $linkId = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-    try {
-        $link = $linkEngine->fetch($linkId);
-    } catch (\Exception $e) {
-        header('Location: /links.php');
-        exit;
-    }
+    $link = $linkEngine->fetch($linkId);
 } else {
     header('Location: /links.php');
     exit;
 }
 
-$linkEngine->testForBroken($linkId);
+include_once '../sidebar_data.php';
 
-header('Location: /links.php?id=' . $linkId);
+$data = [
+    'link' => $link,
+];
+
+$data = array_merge($data, $commonData);
+$data = array_merge($data, $sidebarData);
+
+echo $twig->render('links/confirm_delete.html.twig', $data);

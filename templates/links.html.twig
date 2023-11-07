@@ -23,7 +23,7 @@ Links
         <b>Created:</b> {{ link.date_added|date('Y-m-d') }}<br/>
         <b>Updated:</b> {{ link.date_updated|date('Y-m-d') }}<br/>
         <b>Verified:</b> {{ link.date_verified|date('Y-m-d') }}<br/>
-        <a href="/link_edit.php?id={{ link.id }}">Edit</a> || <a href="/link_test_live.php?id={{ link.id }}">Test if Broken</a> || <a href="/link_confirm_delete.php?id={{ link.id }}">Delete</a>
+        <a href="/links/edit.php?id={{ link.id }}">Edit</a> || <a href="/links/test_live.php?id={{ link.id }}">Test if Broken</a> || <a href="/links/confirm_delete.php?id={{ link.id }}">Delete</a>
     </td>
 </tr>
 {% endif %}

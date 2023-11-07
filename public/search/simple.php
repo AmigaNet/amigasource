@@ -1,6 +1,6 @@
 <?php
 
-require_once 'init.php';
+require_once '../init.php';
 
 $query = filter_input(INPUT_GET, 'q', FILTER_SANITIZE_URL);
 
@@ -13,7 +13,7 @@ $data = [
     'results' => $results,
 ];
 
-include_once 'sidebar_data.php';
+include_once '../sidebar_data.php';
 
 $data = array_merge($data, $commonData);
 $data = array_merge($data, $sidebarData);

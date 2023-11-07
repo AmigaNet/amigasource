@@ -1,6 +1,6 @@
 <?php
 
-require_once 'init.php';
+require_once '../init.php';
 
 $linkEngine = new \AmigaSource\Data\LinkEngine($db);
 
@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
     exit;
 }
 
-include_once 'sidebar_data.php';
+include_once '../sidebar_data.php';
 
 $categories = [];
 

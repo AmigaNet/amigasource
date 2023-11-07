@@ -11,56 +11,6 @@ class LinkEngine
         $this->db = $db;
     }
 
-    public function testForBroken($linkId)
-    {
-        $link = $this->fetch($linkId);
-
-        $url = $link['url'];
-
-        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
-            if ($link['is_dead'] == 0) {
-                $sql = "UPDATE links SET is_dead = 1, is_active = 0 WHERE id = ?";
-                $stmt = $this->db->prepare($sql);
-                $stmt->bind_param('i', $linkId);
-                $stmt->execute();
-                return;
-            }
-            return;
-        }
-
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_NOBODY, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; AmigaSource/1.0; +http://www.amigasource.com/)');
-        curl_setopt($ch, CURLOPT_REFERER, 'http://www.amigasource.com/');
-        curl_exec($ch);
-        $retcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
-
-        if (!curl_errno($ch) && $retcode == 200) {
-            if ($link['is_dead'] == 1) {
-                $sql = "UPDATE links SET is_dead = 0, is_active = 1 WHERE id = ?";
-                $stmt = $this->db->prepare($sql);
-                $stmt->bind_param('i', $linkId);
-                $stmt->execute();
-            }
-        } else {
-            if ($link['is_dead'] == 0) {
-                $sql = "UPDATE links SET is_dead = 1, is_active = 0 WHERE id = ?";
-                $stmt = $this->db->prepare($sql);
-                $stmt->bind_param('i', $linkId);
-                $stmt->execute();
-            }
-        }
-
-        $sql = "UPDATE links SET date_verified = NOW() WHERE id = ?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param('i', $linkId);
-        $stmt->execute();
-    }
-
     public function delete($linkId)
     {
         $sql = "DELETE FROM links WHERE id = ?";
@@ -139,13 +89,98 @@ class LinkEngine
 
     public function search($query)
     {
-        $sql = "SELECT * FROM links WHERE `name` LIKE '%$query%' OR `url` LIKE '%$query%' OR `description` LIKE '%$query%' ORDER BY `name` ASC";
-        $result = $this->db->query($sql);
+        $query = $this->db->real_escape_string($query);
+        $query = "%$query%";
+        $sql = "SELECT * FROM links WHERE `name` LIKE ? OR `url` LIKE ? OR `description` LIKE ? ORDER BY `name` ASC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param('sss', $query, $query, $query);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $links = [];
         while ($row = $result->fetch_assoc()) {
             $links[] = $row;
         }
         return $links;
+    }
+
+    public function searchAdvanced($query, $field)
+    {
+        $query = "%$query%";
+        $sql = "SELECT * FROM links WHERE `$field` LIKE ? ORDER BY `name` ASC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param('s', $query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $links = [];
+        while ($row = $result->fetch_assoc()) {
+            $links[] = $row;
+        }
+
+        return $links;
+    }
+
+    public function testForBroken($linkId)
+    {
+        $link = $this->fetch($linkId);
+
+        $url = $link['url'];
+
+        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+            if ($link['is_dead'] == 0) {
+                $sql = "UPDATE links SET is_dead = 1, is_active = 0 WHERE id = ?";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bind_param('i', $linkId);
+                $stmt->execute();
+                return;
+            }
+            return;
+        }
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; AmigaSource/1.0; +http://www.amigasource.com/)');
+        curl_setopt($ch, CURLOPT_REFERER, 'http://www.amigasource.com/');
+        curl_exec($ch);
+        $retcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if (!curl_errno($ch) && $retcode == 200) {
+            if ($link['is_dead'] == 1) {
+                $sql = "UPDATE links SET is_dead = 0, is_active = 1 WHERE id = ?";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bind_param('i', $linkId);
+                $stmt->execute();
+            }
+        } else {
+            if ($link['is_dead'] == 0) {
+                $sql = "UPDATE links SET is_dead = 1, is_active = 0 WHERE id = ?";
+                $stmt = $this->db->prepare($sql);
+                $stmt->bind_param('i', $linkId);
+                $stmt->execute();
+            }
+        }
+
+        $sql = "UPDATE links SET date_verified = NOW() WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param('i', $linkId);
+        $stmt->execute();
+    }
+
+    public function testForDuplicates($url)
+    {
+        $url = str_replace(['http://', 'https://'], '', $url);
+        $url = '%' . $url;
+
+        $sql = "SELECT * FROM links WHERE url LIKE ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param('s', $url);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
     public function updateCategoriesForLink($linkId, $categories)
