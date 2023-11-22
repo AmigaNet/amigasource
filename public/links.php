@@ -32,4 +32,4 @@ $data = [
 $data = array_merge($data, $commonData);
 $data = array_merge($data, $sidebarData);
 
-echo $twig->render('links.html.twig', $data);
+echo $twig->render('links/list.html.twig', $data);

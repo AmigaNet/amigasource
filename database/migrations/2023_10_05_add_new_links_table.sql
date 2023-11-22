@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS `links` (
   `author` varchar(255) DEFAULT '',
   `email` varchar(255) DEFAULT '',
   `description` text,
+  `rating` int(11) NOT NULL DEFAULT 0,
   `date_added` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `date_updated` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `date_verified` DATETIME DEFAULT '1970-01-02',

@@ -6,17 +6,17 @@ Links
 
 {% block content %}
 
-<h2>Links</h2>
+<h2>Submitted Links</h2>
 
 <table border="1" width="100%">
 {% for link in links %}
 <tr>
-    <td valign="top"{% if user_role == 'admin' %} rowspan="2"{% endif %}><a href="{{ link.url }}">{{ link.name }}</a>{% if link.is_dead == 1 %}<b><font color="red"> (dead)</font></b>{% endif %}</td>
+    <td valign="top" rowspan="2"><a href="{{ link.url }}">{{ link.name }}</a>{% if link.is_dead == 1 %}<b><font color="red"> (dead)</font></b>{% endif %}</td>
     <td>{{ link.description }}</td>
 </tr>
-{% if user_role == 'admin' %}
 <tr>
     <td align="right">
+        <b>Submitter:</b> <a href="/users/profile.php?id={{ link.submitter_id }}">{{ link.username }}</a><br/>
         <b>Is Active:</b> {{ link.is_active }}<br/>
         <b>Is Dead:</b> {{ link.is_dead }}<br/>
         <b>Is Recommended:</b> {{ link.is_recommended }}<br/>
@@ -26,7 +26,6 @@ Links
         <a href="/links/edit.php?id={{ link.id }}">Edit</a> || <a href="/links/test_live.php?id={{ link.id }}">Test if Broken</a> || <a href="/links/confirm_delete.php?id={{ link.id }}">Delete</a>
     </td>
 </tr>
-{% endif %}
 {% endfor %}
 </table>
 

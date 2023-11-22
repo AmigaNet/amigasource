@@ -110,4 +110,19 @@
             </ul>
         </td>
     </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td bgcolor="#006CD9">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Highest Rated Links</b></font>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff">
+            <ol>
+            {% for link in highestRatedLinks %}
+                <li><a href="{{ link.url }}">{{ link.name }}</a> ({{ link.rating }})</li>
+            {% endfor %}
+            </ol>
+        </td>
+    </tr>
 </table>

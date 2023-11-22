@@ -62,6 +62,29 @@ class LinkEngine
         return $links;
     }
 
+    public function fetchHighestRated()
+    {
+        $sql = "SELECT * FROM links WHERE is_active = 1 ORDER BY rating DESC LIMIT 10";
+        $result = $this->db->query($sql);
+        $links = [];
+        while ($row = $result->fetch_assoc()) {
+            $links[] = $row;
+        }
+        return $links;
+    }
+
+    public function fetchSubmitted()
+    {
+        $sql = "SELECT l.*, u.username FROM links l INNER JOIN users u ON l.submitter_id = u.id WHERE l.is_active = 0 AND l.submitter_id != 0 ORDER BY `name` ASC";
+        $result = $this->db->query($sql);
+        $links = [];
+        while ($row = $result->fetch_assoc()) {
+            $links[] = $row;
+        }
+
+        return $links;
+    }
+
     public function getCategoriesForLink($linkId)
     {
         $sql = "SELECT c.* FROM categories AS c INNER JOIN links_categories AS lc ON c.id = lc.category_id INNER JOIN links AS l ON lc.link_id = l.id WHERE l.id = $linkId ORDER BY c.`name` ASC";
@@ -117,6 +140,20 @@ class LinkEngine
         }
 
         return $links;
+    }
+
+    public function suggestLink($name, $url, $author, $email, $description, $categories, $submitter_id)
+    {
+        $sql = "INSERT INTO links (`name`, `url`, `author`, `email`, `description`, `submitter_id`, `is_active`) VALUES (?, ?, ?, ?, ?, ?, 0)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param('sssssi', $name, $url, $author, $email, $description, $submitter_id);
+        $stmt->execute();
+        $linkId = $this->db->insert_id;
+        foreach ($categories as $categoryId) {
+            $sql = "INSERT INTO links_categories (link_id, category_id) VALUES ($linkId, $categoryId)";
+            $this->db->query($sql);
+        }
+        return $linkId;
     }
 
     public function testForBroken($linkId)

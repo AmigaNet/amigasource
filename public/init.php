@@ -41,9 +41,13 @@ if (isset($_SESSION['username'])) {
         $user = $userEngine->fetchByUsername($_SESSION['username']);
         $commonData['username'] = $user['username'];
         $commonData['user_role'] = $user['role'];
+        $commonData['user_id'] = $user['id'];
         $commonData['logged_in'] = true;
     } catch (\Exception $e) {
         unset($_SESSION['username']);
+        $commonData['username'] = null;
+        $commonData['user_role'] = null;
+        $commonData['user_id'] = null;
         $commonData['logged_in'] = false;
     }
 }

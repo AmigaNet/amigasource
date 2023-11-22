@@ -28,6 +28,9 @@ $repairShops = $repairShopEngine->fetchAll();
 $vendorEngine = new \AmigaSource\Data\VendorEngine($db);
 $vendors = $vendorEngine->fetchAll();
 
+$linkEngine = new \AmigaSource\Data\LinkEngine($db);
+$highestRatedLinks = $linkEngine->fetchHighestRated();
+
 $sidebarData = [
     'categories' => $categoryData,
     'upcomingEvents' => $upcomingEvents,
@@ -35,4 +38,5 @@ $sidebarData = [
     'printMagazines' => $printMagazines,
     'repairShops' => $repairShops,
     'vendors' => $vendors,
+    'highestRatedLinks' => $highestRatedLinks,
 ];

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Rate link
+{% endblock %}
+
+{% block content %}
+<h1>Rate Link</h1>
+
+<p>Rate the link {{ link.url }}. You can rate it anywhere from -3 to 3.</p>
+
+<form method="post" action="/links/submit_rating.php">
+    <input type="hidden" name="id" value="{{ link.id }}" />
+    <input type="hidden" name="user_id" value="{{ user_id }}" />
+    <input type="number" name="rating" min="-3" max="3" value="{{ rating }}" />
+    <input type="submit" value="Rate" />
+</form>
+{% endblock %}
