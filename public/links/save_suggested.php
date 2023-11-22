@@ -14,7 +14,7 @@ $url = filter_input(INPUT_POST, 'url', FILTER_SANITIZE_URL);
 $author = htmlspecialchars($_POST['author'], ENT_NOQUOTES, 'UTF-8');
 $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $description = htmlspecialchars($_POST['description'], ENT_NOQUOTES, 'UTF-8');
-$submitter_id = $_SESSION['user_id'];
+$submitter_id = $commonData['user_id'];
 $categories = filter_input(INPUT_POST, 'categories', FILTER_SANITIZE_NUMBER_INT, FILTER_REQUIRE_ARRAY);
 
 $duplicates = $linkEngine->testForDuplicates($url);
