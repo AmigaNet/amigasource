@@ -1,6 +1,6 @@
 <?php
 
-require_once '../public/init.php';
+require_once __DIR__ . '/../public/init.php';
 
 $sql = "SELECT value FROM system WHERE name = 'validating'";
 $result = $db->query($sql);
