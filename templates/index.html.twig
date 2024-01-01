@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<h2>News</h2>
+
+<table width="100%">
+{% for article in news %}
+    <tr>
+        <td bgcolor="#637B94" cellpadding="1" cellspacing="0">
+            <table cellpadding="1" width="100%" bgcolor="#ffffff">
+                <tr>
+                    <td bgcolor="#ff1100">
+                        <font color="#ffffff" size="3"><b>{{ article['date_added']|date("M j, Y") }}</b></font>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <p>{{ article['story'] | raw }}</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+    <tr><td>&nbsp;</td></tr>
+{% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Links
+{% endblock %}
+
+{% block content %}
+
+<h2>Submitted Links</h2>
+
+<table border="1" width="100%">
+{% for link in links %}
+<tr>
+    <td valign="top" rowspan="2"><a href="{{ link.url }}">{{ link.name }}</a>{% if link.is_dead == 1 %}<b><font color="red"> (dead)</font></b>{% endif %}</td>
+    <td>{{ link.description }}</td>
+</tr>
+<tr>
+    <td align="right">
+        <b>Submitter:</b> <a href="/users/profile.php?id={{ link.submitter_id }}">{{ link.username }}</a><br/>
+        <b>Is Active:</b> {{ link.is_active }}<br/>
+        <b>Is Dead:</b> {{ link.is_dead }}<br/>
+        <b>Is Recommended:</b> {{ link.is_recommended }}<br/>
+        <b>Created:</b> {{ link.date_added|date('Y-m-d') }}<br/>
+        <b>Updated:</b> {{ link.date_updated|date('Y-m-d') }}<br/>
+        <b>Verified:</b> {{ link.date_verified|date('Y-m-d') }}<br/>
+        <a href="/links/edit.php?id={{ link.id }}">Edit</a> || <a href="/links/test_live.php?id={{ link.id }}">Test if Broken</a> || <a href="/links/confirm_delete.php?id={{ link.id }}">Delete</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

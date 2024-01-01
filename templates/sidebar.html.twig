@@ -1,0 +1,128 @@
+<table width="100%">
+    <tr>
+        <td bgcolor="#c70000">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Search</b></font>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff">
+            <form action="/search/simple.php" method="get">
+                <input type="text" name="q" value="" /><br/>
+                <input type="submit" value="Search" />
+            </form>
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td bgcolor="#f1c40f">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Event Calendar</b></font>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff">
+            {% if upcomingEvents is empty %}
+            No upcoming events.
+            {% else %}
+            <ul>
+                {% for event in upcomingEvents %}
+                <li>
+                    <b>{{ event.cal_name }}</b><br/>
+                    {% if event.cal_date_start == event.cal_date_end %}
+                    {{ event.cal_date_start|date("M j, Y") }}<br/>
+                    {% else %}
+                    {{ event.cal_date_start|date("M j, Y") }} - {{ event.cal_date_end|date("M j, Y") }}<br/>
+                    {% endif %}
+                    {{ event.cal_location }}<br/>
+                    <a href="{{ event.cal_url }}">{{ event.cal_url }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td bgcolor="#006CD9">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Categories</b></font>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff">
+            {% for category in categories %}
+            <b><a href="/links.php?category={{ category.id }}">{{ category.title }}</a></b>
+            <ul>
+                {% for subcategory in category.sub %}
+                <li><a href="/links.php?category={{ subcategory.id }}">{{ subcategory.name }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td bgcolor="#D61BAF">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Magazines</b></font>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff">
+            <b>Online</b><br/>
+            <ul>
+                {% for magazine in onlineMagazines %}
+                    <li><a href="{{ magazine.online_url }}">{{ magazine.online_name }}</a></li>
+                {% endfor %}
+            </ul>
+            <b>Print</b><br/>
+            <ul>
+                {% for magazine in printMagazines %}
+                    <li><a href="{{ magazine.print_url }}">{{ magazine.print_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td bgcolor="#dc7633">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Big Shops &amp; Vendors</b></font>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff">
+            <ul>
+            {% for vendor in vendors %}
+                <li><a href="{{ vendor.vendor_url }}">{{ vendor.vendor_name }}</a></li>
+            {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td bgcolor="#294C2E">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Service and Repair</b></font>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff">
+            <ul>
+            {% for shop in repairShops %}
+                <li><a href="{{ shop.repair_url }}">{{ shop.repair_name }}</a></li>
+            {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td bgcolor="#006CD9">
+            <font color="#ffffff" face="Verdana, sans-serif" size="4"><b>Highest Rated Links</b></font>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#ffffff">
+            <ol>
+            {% for link in highestRatedLinks %}
+                <li><a href="{{ link.url }}">{{ link.name }}</a> ({{ link.rating }})</li>
+            {% endfor %}
+            </ol>
+        </td>
+    </tr>
+</table>

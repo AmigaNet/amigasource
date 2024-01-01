@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+
+<head>
+	<title>{% block title %}{% endblock %} | {{ siteTitle }}</title>
+	<link rel="icon" type="image/x-icon" href="/web_images/static/favicon.ico">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="robots" content="noindex,nofollow">
+	{% block meta %}{% endblock %}
+	<style type="text/css"> body { background-image: url('/web_images/static/lg_boing.jpg'); }</style>
+	{% block css %}{% endblock %}
+</head>
+
+<body>
+
+<center>
+    <a href="/index.php"><img src="/web_images/static/lg-asbnr.jpg" alt="Amiga Source" height="120" width="380"></a>		
+</center>
+
+<table cellpadding="10" width="80%" align="center">
+	<tr>
+		<td colspan="2" align="center">
+			<font size="4"><b>Since 2001... Your BEST source for Amiga information... Again</b></font>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" bgcolor="#dddddd">
+			<table width="100%">
+				<tr>
+					<td>
+						<a href="/index.php">Home</a> |
+						<a href="/links.php">Links</a> |
+						<a href="/search/search.php">Search</a> |
+						<a href="/links/suggest.php">Suggest a Link</a>
+					</td>
+					<td align="right">
+					{% include 'user.html.twig' %}
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td bgcolor="#dddddd" valign="top" width="250">
+		{% include 'sidebar.html.twig' %}
+		</td>
+		<td valign="top" bgcolor="#ffffff">
+		{% block content %}{% endblock %}
+		</td>
+	</tr>
+</table>
+
+<center>
+    <p>You can contact me at <a href="mailto:webmaster@amigasource.com">webmaster@amigasource.com</a></p>
+	<p>Logo copyright 2001.</p>
+    <p>Amiga is a registered trademark. Site copyright &copy;2023, Scott A. Pistorino</p>
+</center>
+{% block js %}{% endblock %}
+</body>
+
+</html>

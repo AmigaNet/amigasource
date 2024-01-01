@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h2>Admin Dashboard</h2>
+
+<p>This is the admin dashboard.</p>
+
+<h3>System Data</h3>
+
+<p>Total Links: {{ link_count|number_format }}</p>
+<p>Dead Links: {{ dead_link_count|number_format }}</p>
+<p>Active Links: {{ active_link_count|number_format }}</p>
+
+<p>Validation Running: {{ system_data.validating }}</p>
+<p>Validation Last Start: {{ system_data.validation_last_start|date('Y-m-d H:i:s') }}</p>
+<p>Validation Last End: {{ system_data.validation_last_end|date('Y-m-d H:i:s') }}</p>
+
+<h3>Actions</h3>
+
+<h4>Files</h4>
+
+<p><a href="/admin/upload_file.php">Upload a file</a></p>
+
+<h4>News Articles</h4>
+
+<p><a href="/news/create.php">Add a news article</a></p>
+<p><a href="/news/list.php">List all news articles</a></p>
+
+<h4>Links</h4>
+
+<p><a href="/links/create.php">Add a link</a></p>
+<p><a href="/links/submitted.php">Review submitted links</a></p>
+<p><a href="/links/test_all.php">Test all links to verify they are working</a> (warning, takes a long time)</p>
+
+
+{% endblock %}

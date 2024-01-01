@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block content %}
+
+<h2>Search</h2>
+
+<form action="/search/results.php" method="post">
+<table>
+    <tr>
+        <td>
+            <label for="query">Search for:</label>
+        </td>
+        <td>
+            <input type="text" name="query" value="" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="field">in</label>
+        </td>
+        <td>
+            <select name="field">
+                <option value="name">Name</option>
+                <option value="description">Description</option>
+                <option value="url">URL</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <input type="submit" value="Search" />
+        </td>
+    </tr>
+</table>
+</form>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Links
+{% endblock %}
+
+{% block content %}
+
+<h2>Links</h2>
+
+<table border="1" width="100%">
+<tr>
+    <th width="200">Name</th>
+    <th>Description</th>
+    <th width="100" align="center">Rating</th>
+</tr>
+{% for link in links %}
+<tr>
+    <td valign="top"{% if user_role == 'admin' %} rowspan="2"{% endif %}>
+        <a href="{{ link.url }}">{{ link.name }}</a>
+        {% if link.is_dead == 1 %}<b><font color="red"> (dead)</font></b>{% else %}{% endif %}
+    </td>
+    <td>{{ link.description }}</td>
+    <td width="100" align="center" valign="center">
+        <b>{{ link.rating }}</b><br/>
+    {% if logged_in %}<p><a href="/links/rate.php?id={{ link.id }}">Rate</a></p>{% endif %}
+    </td>
+</tr>
+{% if user_role == 'admin' %}
+<tr>
+    <td align="right" colspan="2" bgcolor="#eeeeee">
+        <b>Is Active:</b> {{ link.is_active }}<br/>
+        <b>Is Dead:</b> {{ link.is_dead }}<br/>
+        <b>Is Recommended:</b> {{ link.is_recommended }}<br/>
+        <b>Created:</b> {{ link.date_added|date('Y-m-d') }}<br/>
+        <b>Updated:</b> {{ link.date_updated|date('Y-m-d') }}<br/>
+        <b>Verified:</b> {{ link.date_verified|date('Y-m-d') }}<br/>
+        <a href="/links/edit.php?id={{ link.id }}">Edit</a> || <a href="/links/test_live.php?id={{ link.id }}">Test if Broken</a> || <a href="/links/confirm_delete.php?id={{ link.id }}">Delete</a>
+    </td>
+</tr>
+{% endif %}
+{% endfor %}
+</table>
+
+{% endblock %}

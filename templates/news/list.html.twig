@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+News Articles
+{% endblock %}
+
+{% block content %}
+
+<h2>News Articles</h2>
+
+<table border="1" width="100%">
+{% for article in articles %}
+<tr>
+    <td valign="top" rowspan="2"><a href="/news/edit.php?id={{ article.id }}">{{ article.title }} ({{ article.date_added|date('Y-m-d') }})</a></td>
+    <td>{{ article.story }}</td>
+</tr>
+<tr>
+    <td align="right">
+        <b>Is Active:</b> {{ article.is_active }}<br/>
+        <b>Created:</b> {{ article.date_added|date('Y-m-d') }}<br/>
+        <b>Updated:</b> {{ article.date_updated|date('Y-m-d') }}<br/>
+        <a href="/news/edit.php?id={{ article.id }}">Edit</a> || <a href="/news/confirm_delete.php?id={{ article.id }}">Delete</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

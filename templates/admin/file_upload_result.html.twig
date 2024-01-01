@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+File Upload Result
+{% endblock %}
+
+{% block content %}
+
+{% if error %}
+    <p><font color="red">{{ error }}</font></p>
+{% else %}
+    <p>File uploaded successfully. The URL is <a href="{{ fileURL }}">{{ fileURL }}</a>.</p>
+{% endif %}
+
+{% endblock %}

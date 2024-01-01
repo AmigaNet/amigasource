@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Add News Article
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var story = $('#story').val();
+    $('#preview').html(story);
+
+    $('#story').keyup(function() {
+        var story = $('#story').val();
+        $('#preview').html(story);
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+
+<h2>Add News Article</h2>
+
+<p>You are adding a news article.</p>
+
+<form action="/news/save_new.php" method="post">
+    <table>
+    <tr>
+        <td>Title</td>
+        <td><input type="text" name="title" size="80"></td>
+    </tr>
+    <tr>
+        <td>Story</td>
+        <td><textarea name="story" id="story" cols="80" rows="10"></textarea></td>
+    </tr>
+    <tr>
+        <td>Is Active</td>
+        <td><input type="checkbox" name="is_active" checked></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input type="submit" value="Save"></td>
+    </tr>
+    </table>
+</form>
+
+<h2>Preview</h2>
+
+<table border="1" width="100%">
+<tr>
+    <td><div id="preview"></div></td>
+</tr>
+</table>
+
+{% endblock %}
